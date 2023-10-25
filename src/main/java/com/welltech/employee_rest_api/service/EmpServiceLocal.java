@@ -30,33 +30,13 @@ public class EmpServiceLocal implements EmployeeService{
         return employees.stream().toList();
     }
 
+    public Employee findById(int id){
+        Predicate<?super Employee> condition = employee -> employee.getId() == id;
+        return employees.stream().filter(condition).findFirst().get();
+    }
 
-
-//    public List<Employee> findByUsername(String username){
-//        Predicate<? super Todo> predicate =
-//                todo -> todo.getUsername().equalsIgnoreCase(username);
-//        return todos.stream().filter(predicate).toList();
-//    }
-
-//    public Employee addTodo(String username, String description, LocalDate targetDate, boolean done) {
-//        Employee employee = new Employee(++empCount,username,description,targetDate,done);
-//        todos.add(todo);
-//        return todo;
-//    }
-//
-//    public void deleteById(int id) {
-//        Predicate<? super Todo> predicate = todo -> todo.getId() == id;
-//        todos.removeIf(predicate);
-//    }
-//
-//    public Todo findById(int id) {
-//        Predicate<? super Todo> predicate = todo -> todo.getId() == id;
-//        Todo todo = todos.stream().filter(predicate).findFirst().get();
-//        return todo;
-//    }
-//
-//    public void updateTodo(Todo todo) {
-//        deleteById(todo.getId());
-//        todos.add(todo);
-//    }
+    public void deleteById(int id){
+        Predicate<?super Employee> condition = employee -> employee.getId() == id;
+        employees.removeIf(condition);
+    }
 }

@@ -18,5 +18,5 @@ public class HelloWorldBeanController {
         return new HelloWorldBean("Hello World");
     }
 
-  
+
 }

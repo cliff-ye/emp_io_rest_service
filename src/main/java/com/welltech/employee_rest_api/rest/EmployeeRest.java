@@ -3,7 +3,10 @@ package com.welltech.employee_rest_api.rest;
 import com.welltech.employee_rest_api.entity.Employee;
 import com.welltech.employee_rest_api.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,6 +23,22 @@ public class EmployeeRest {
     @GetMapping("/employees")
     public List<Employee> getAllEmp(){
         return employeeService.findAllEmployees();
+    }
+
+    @GetMapping("/employees/{id}")
+    public Employee findById(@PathVariable int id){
+        return employeeService.findById(id);
+    }
+
+    @DeleteMapping("/employees/{id}")
+    public String deleteEmp(@PathVariable int id){
+        Employee emp = employeeService.findById(id);
+
+        if(emp == null){
+            throw new RuntimeException("Employee not found");
+        }
+        employeeService.deleteById(emp.getId());
+        return "deleted";
     }
 
 }
