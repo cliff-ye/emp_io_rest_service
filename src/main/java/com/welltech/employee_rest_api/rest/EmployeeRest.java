@@ -4,10 +4,7 @@ import com.welltech.employee_rest_api.entity.Employee;
 import com.welltech.employee_rest_api.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,4 +38,13 @@ public class EmployeeRest {
         return "deleted";
     }
 
+    @PutMapping("/employees/{id}")
+    public Employee updateEmployee(@PathVariable int id,@RequestBody Employee emp){
+        return employeeService.save(emp);
+    }
+
+    @PostMapping("/employees")
+    public Employee addEmployee(@RequestBody Employee emp){
+        return employeeService.save(emp);
+    }
 }

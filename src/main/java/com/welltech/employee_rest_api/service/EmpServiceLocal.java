@@ -39,4 +39,19 @@ public class EmpServiceLocal implements EmployeeService{
         Predicate<?super Employee> condition = employee -> employee.getId() == id;
         employees.removeIf(condition);
     }
+
+    public Employee save(Employee emp){
+        if(emp.getId() == 0){
+            employees.add(new Employee(++empCount, emp.getFullName(),emp.getAddress(),
+                    emp.getBirthDate(), emp.getEmailAddress() ));
+        }
+        else{
+            deleteById(emp.getId());
+            employees.add(emp);
+        }
+
+      return emp;
+    }
+
+
 }
