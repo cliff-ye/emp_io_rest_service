@@ -17,6 +17,12 @@ public class EmployeeRest {
     public EmployeeRest(EmployeeService employeeService){
         this.employeeService = employeeService;
     }
+
+    @GetMapping("/auth")
+    public String basicAuthCheck(){
+        return "success";
+    }
+
     @GetMapping("/employees")
     public List<Employee> getAllEmp(){
         return employeeService.findAllEmployees();
@@ -38,8 +44,8 @@ public class EmployeeRest {
         return "deleted";
     }
 
-    @PutMapping("/employees/{id}")
-    public Employee updateEmployee(@PathVariable int id,@RequestBody Employee emp){
+    @PutMapping("/employees")
+    public Employee updateEmployee(@RequestBody Employee emp){
         return employeeService.save(emp);
     }
 
