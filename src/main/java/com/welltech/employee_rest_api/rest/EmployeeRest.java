@@ -3,6 +3,7 @@ package com.welltech.employee_rest_api.rest;
 import com.welltech.employee_rest_api.entity.Employee;
 import com.welltech.employee_rest_api.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ public class EmployeeRest {
     private final EmployeeService employeeService;
 
     @Autowired
-    public EmployeeRest(EmployeeService employeeService){
+    public EmployeeRest(@Qualifier("db") EmployeeService employeeService){
         this.employeeService = employeeService;
     }
 

@@ -1,6 +1,7 @@
 package com.welltech.employee_rest_api.service;
 
 import com.welltech.employee_rest_api.entity.Employee;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 @Service
+@Qualifier("static")
 public class EmpServiceLocal implements EmployeeService{
 
     private static List<Employee> employees = new ArrayList<>();
